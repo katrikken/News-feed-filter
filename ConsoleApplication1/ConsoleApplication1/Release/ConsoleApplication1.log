@@ -1,0 +1,14 @@
+﻿  Article.cpp
+  Main.cpp
+  Filter.cpp
+  Parser.cpp
+  Service.cpp
+  tinystr.cpp
+  tinyxml.cpp
+  tinyxmlerror.cpp
+  tinyxmlparser.cpp
+  Generating code
+  All 818 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  Finished generating code
+  ConsoleApplication1.vcxproj -> C:\Users\kurys_000\documents\visual studio 2015\Projects\ConsoleApplication1\Release\NewsFeed.exe
+  ConsoleApplication1.vcxproj -> C:\Users\kurys_000\documents\visual studio 2015\Projects\ConsoleApplication1\Release\NewsFeed.pdb (Full PDB)
