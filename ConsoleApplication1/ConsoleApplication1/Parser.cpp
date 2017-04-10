@@ -12,8 +12,10 @@
 
 using namespace std;
 
+/** This is a name of file for temporary storage of a downloaded XML.*/
 static const char *filename = "temp";
 
+/** This method calls private Parser methods to fill articles attribute with instances of Article parsed from the XML.*/
 vector<Article> & Parser::parse_input() {
 	for (auto it = rss_links.begin(); it != rss_links.end(); ++it) {
 		bool status = fetch_web_page(*it);
@@ -25,12 +27,14 @@ vector<Article> & Parser::parse_input() {
 	return articles;
 }
 
+/** This method serves the curlib purposes to write fetched data to the file. */
 static size_t write_data(void *ptr, size_t size, size_t nmemb, void *stream)
 {
 	int written = fwrite(ptr, size, nmemb, (FILE *)stream);
 	return written;
 }
 
+/** This method downloads web page and stores it into a temprorary file. */
 bool Parser::fetch_web_page(const string& page) {
 	bool status = true;
 	CURL *curl;
@@ -71,6 +75,7 @@ bool Parser::fetch_web_page(const string& page) {
 	return status;
 }
 
+/** This method parses the XML from a temporary file, from which creates and stores instances of the Article class. */
 void Parser::resolve_DOM() {
 	TiXmlDocument doc(filename);
 	bool loadOkay = doc.LoadFile();

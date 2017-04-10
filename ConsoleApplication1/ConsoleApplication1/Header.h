@@ -6,6 +6,7 @@
 
 using namespace std;
 
+/** This class represents articles. */
 class Article {
 public:
 	string title;
@@ -14,11 +15,11 @@ public:
 	tm pubDate;
 	string category;
 
-	Article();
 	string get_title();
 	string get_link();
 };
 
+/** This class is for downloading the web pages and parsing articles from them. */
 class Parser {
 private:
 	vector<Article> articles;
@@ -31,6 +32,7 @@ public:
 	vector<Article> & parse_input();	
 };
 
+/** This class contains information which articles are filtred by and methods to check if articles pass the filter. */
 class Filter {
 	
 public:
@@ -38,13 +40,12 @@ public:
 	vector<string> negative_keys;
 	long seconds;
 
-	Filter();
-
 	bool meets_the_request(Article & article);
 	bool contains_keys(stringstream & ss);
 	bool is_fresh(tm date);
 };
 
+/** This class is a controller for the interaction between parsing, filtering and outputting part of the program. */
 class Service {
 private:
 	void prepare_articles();

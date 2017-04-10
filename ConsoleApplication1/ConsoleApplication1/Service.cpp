@@ -10,9 +10,10 @@ Service::Service(Parser& parser_, Filter& filter_, string output_file, long inte
 	parser = parser_;
 	filter = filter_;
 	output = output_file;
-	interval = interval_ * 1000;
+	interval = interval_ * 1000; //The interval is used as milliseconds later.
 }
 
+/** This method calls for the Parser and Filter methods and performs output of the articles. */
 void Service::prepare_articles() {
 	vector<Article> articles = parser.parse_input();
 	ofstream output_stream(output);
@@ -31,6 +32,7 @@ void Service::prepare_articles() {
 	}
 }
 
+/** This method runs algorithm in a loop with a given interval. */
 void Service::start() {
 	while (true) {
 		prepare_articles();

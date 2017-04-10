@@ -7,10 +7,7 @@
 #include <locale>
 #include <iostream>
 
-Filter::Filter() {
-
-}
-
+/** This method passes data about articles to other filter methods. */
 bool Filter::meets_the_request(Article & article) {
 	stringstream ss;
 	ss.str(article.title);
@@ -24,6 +21,7 @@ bool Filter::meets_the_request(Article & article) {
 	return false;
 }
 
+/** This method checks if a character is a white space or punctuation. */
 bool is_spase_or_punct(char c) {
 	static const char characters[] = "\r\n\t !?.,/-=:;'\\&*%@#()[]{}\"";
 	for (size_t i = 0; i < sizeof(characters); ++i) {
@@ -34,6 +32,7 @@ bool is_spase_or_punct(char c) {
 	return false;
 }
 
+/** This method trims the string from white spaces and punctuation. */
 string & trim(string &s) {
 	size_t pos1 = 0;
 	size_t pos2 = s.size() - 1;
@@ -54,6 +53,7 @@ string & trim(string &s) {
 	return s;
 }
 
+/** This method checks if a given article date is within time interval between now and user defined time ago. */
 bool Filter::is_fresh(tm date) {
 	errno_t err;
 	time_t rawtime;
@@ -73,6 +73,7 @@ bool Filter::is_fresh(tm date) {
 	return false;
 }
 
+/** This method checks whether article title, category or description contains desired or undesired keywords. */
 bool Filter::contains_keys(stringstream & ss) {
 	string item;
 	while (getline(ss, item, ' ')) {

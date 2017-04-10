@@ -9,6 +9,9 @@
 
 using namespace std;
 
+/**
+ * This method splits string by a given delimeter and stores the result to a referenced vector.
+ */
 void split(const std::string &s, char delim, vector<string> & result) {
 	stringstream ss;
 	ss.str(s);
@@ -18,6 +21,7 @@ void split(const std::string &s, char delim, vector<string> & result) {
 	}
 }
 
+/** This method parses time argument formatted as [0-9][0-9]*[hm] to the amount of seconds. */
 long get_seconds(string time) {
 	long seconds = 0;
 	if (time[time.size() - 1] == 'm') {
@@ -33,6 +37,7 @@ int main(int argc, char *argv[])
 {
 	try {
 		if (argc == 6) {
+			/** Information about RSS links stores in a Parser instance. */
 			Parser parser;
 
 			string line;
@@ -49,6 +54,7 @@ int main(int argc, char *argv[])
 				cout << "Could not open file " << argv[1] << endl;
 			}
 
+			/** Information about key words stores in a Filter instance. */
 			Filter filter;
 
 			ifstream key_file(argv[2]);
@@ -77,6 +83,7 @@ int main(int argc, char *argv[])
 
 			filter.seconds = get_seconds(argv[5]);
 
+			/** Algorithm runs in a separate thread. */
 			thread tr1(&Service::start, Service(parser, filter, argv[3], get_seconds(argv[4])));
 			tr1.join();
 		}
