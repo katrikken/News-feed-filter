@@ -1,3 +1,12 @@
-﻿  Main.cpp
+﻿  tinyxmlparser.cpp
+  tinyxmlerror.cpp
+  tinyxml.cpp
+  tinystr.cpp
+  Service.cpp
+  Parser.cpp
+  Filter.cpp
+  Main.cpp
+  Article.cpp
+  Generating Code...
   ConsoleApplication1.vcxproj -> C:\Users\kurys_000\documents\visual studio 2015\Projects\ConsoleApplication1\Debug\NewsFeed.exe
   ConsoleApplication1.vcxproj -> C:\Users\kurys_000\documents\visual studio 2015\Projects\ConsoleApplication1\Debug\NewsFeed.pdb (Full PDB)
