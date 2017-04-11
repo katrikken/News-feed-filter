@@ -42,14 +42,15 @@ string & trim(string &s) {
 			break;
 		}
 	}
-	for (int i = s.size() - 1; i >= 0; --i) {
+	for (auto i = s.size() - 1; i >= 0; --i) {
 		if (!is_spase_or_punct(s[i])) {
 			pos2 = i;
 			break;
 		}
 	}
-	s.erase(0, pos1 - 0);
 	s.erase(pos2, s.size() - 1 - pos2);
+	s.erase(0, pos1);
+	
 	return s;
 }
 
