@@ -56,22 +56,28 @@ string & trim(string &s) {
 
 /** This method checks if a given article date is within time interval between now and user defined time ago. */
 bool Filter::is_fresh(tm &date) {
-	errno_t err;
-	time_t rawtime;
-	tm current_time;
-	time(&rawtime);
-	if (err = gmtime_s(&current_time, &rawtime)) {
-		cout << "Could not get local time " << endl;
+	if (seconds > 0) {
+		errno_t err;
+		time_t rawtime;
+		tm current_time;
+		time(&rawtime);
+		if (err = gmtime_s(&current_time, &rawtime)) {
+			cout << "Could not get local time " << endl;
+		}
+		else {
+			time_t new_date = mktime(&date) + seconds;
+			time_t t1 = mktime(&current_time);
+
+			if (difftime(t1, new_date) <= 0) {
+				return true;
+			}
+		}
+
+		return false;
 	}
 	else {
-		time_t new_date = mktime(&date) + seconds;
-		time_t t1 = mktime(&current_time);
-
-		if (difftime(t1, new_date) <= 0) {
-			return true;
-		}
+		return true;
 	}
-	return false;
 }
 
 /** This method checks whether article title, category or description contain desired or undesired keywords. 
@@ -102,13 +108,18 @@ bool Filter::contains_keys(stringstream & ss) {
 
 /** This method writes information about filter settings to the standard output.*/
 void Filter::write_filter_info() {
-	int time = seconds / 60;
-	if (time > 59) {
-		time = time / 60;
-		cout << "Looking for articles added within last " << time << " hours" << endl;
+	if (seconds != 0) {
+		int time = seconds / 60;
+		if (time > 59) {
+			time = time / 60;
+			cout << "Looking for articles added within last " << time << " hours" << endl;
+		}
+		else {
+			cout << "Looking for articles added within last " << time << " minutes" << endl;
+		}
 	}
 	else {
-		cout << "Looking for articles added within last " << time << " minutes";
+		cout << "Looking for articles for the whole time period." << endl;
 	}
 	
 	if (positive_keys.size() == 0 && negative_keys.size() == 0) {

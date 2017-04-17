@@ -153,7 +153,7 @@ int main(int argc, char *argv[])
 				}
 			}
 		
-			if (parser.rss_links.size() > 0 && filter.seconds > 0) {
+			if (parser.rss_links.size() > 0) {
 				service.filter = filter;
 				service.parser = parser;
 
@@ -164,9 +164,7 @@ int main(int argc, char *argv[])
 				if (parser.rss_links.size() == 0) {			
 					cout << "Check correctness of RSS URLs in " << link_p << " or " << link_file_p << endl;
 				}
-				if (filter.seconds <= 0) {
-					cout << "Check correctness of time parameter " << time_period_p << endl;
-				}
+				
 				write_usage_info();
 			}
 		}

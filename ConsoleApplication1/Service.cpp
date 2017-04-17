@@ -92,7 +92,7 @@ void Service::start() {
 		}
 		else {
 			prepare_articles();
-			cout << "Program has successfully ended." << endl;
+			cout << "Program has successfully finished." << endl;
 		}
 	}
 	catch (int e) {
